@@ -1,5 +1,6 @@
 package com.folksdev.account.model
 
+import net.bytebuddy.asm.Advice
 import org.hibernate.annotations.GenericGenerator
 import javax.persistence.*
 
@@ -17,7 +18,8 @@ data class Customer(
         val accounts: Set<Account>
 )
 {
-        constructor(name: String, surName: String ) : this("", name,surName, HashSet())
+
+        constructor( name: String, surName: String  ) : this("", name,surName,HashSet())
 
         override fun equals(other: Any?): Boolean {
                 if (this === other) return true
@@ -33,10 +35,11 @@ data class Customer(
                 return true
         }
 
+
         override fun hashCode(): Int {
                 var result = id?.hashCode() ?: 0
-                result = 31 * result + name.hashCode()
-                result = 31 * result + surName.hashCode()
+                result = 31 * result + (name?.hashCode() ?: 0)
+                result = 31 * result + (surName?.hashCode() ?: 0)
                 return result
         }
 
