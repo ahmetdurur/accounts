@@ -37,9 +37,9 @@ public class AccountApplication implements CommandLineRunner {
 		HashSet<Account> hsAc = new HashSet<Account>();
 		hsAc.add(account);*/
 		Customer customer = customerRepository.save(new Customer("Erol", "asda"));
-		//Customer customer2 = customerRepository.save(new Customer("Alice", "Bob"));
+		Customer customer2 = customerRepository.save(new Customer("Alice", "Bob"));
 
 		System.out.println(customer);
-		//System.out.println(customer2);
+		System.out.println(customer2);
 	}
 }
